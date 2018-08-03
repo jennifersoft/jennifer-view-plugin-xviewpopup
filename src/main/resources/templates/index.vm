@@ -1,0 +1,11 @@
+<div id="xviewpopup-main">
+    <div class="message">Redirecting...</div>
+    <form id="frm_plugin" method="post" target="_self">
+        <input type="hidden" name="txids" value="$txid" />
+        <input type="hidden" name="sid" value="$sid" />
+        <input type="hidden" name="stime" value="$stime" />
+        <input type="hidden" name="etime" value="$etime" />
+        <input type="hidden" name="isPopup" value="true" />
+    </form>
+    <input type="hidden" name="hostName" value="$hostName" />
+</div>
