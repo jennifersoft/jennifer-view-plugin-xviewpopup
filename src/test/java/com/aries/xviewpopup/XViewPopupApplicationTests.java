@@ -19,7 +19,7 @@ public class XViewPopupApplicationTests {
 
     @Test
     public void testParameter() {
-//        // 참고로 searchTime은 초단위로 변경되면서 끝에서 세자리가 000으로 변경됨
+        // 참고로 searchTime은 초단위로 변경되면서 끝에서 세자리가 000으로 변경됨
 //        XViewPopupParameter testParams = new XViewPopupParameter();
 //        testParams.setDomainId((short) 7908);
 //        testParams.setSearchTime(1536648216792l);
