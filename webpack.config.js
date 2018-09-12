@@ -1,13 +1,13 @@
 const path = require('path')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const clientPath = path.resolve(__dirname, 'src/main/client')
 const staticPath = path.resolve(__dirname, 'src/main/resources/static')
 
 module.exports = {
     mode: 'development',
-    context: staticPath,
     entry: {
         vendors: [ 'jquery' ],
-        app: staticPath + '/script/index.js'
+        app: clientPath + '/index.js'
     },
     output: {
         path: staticPath,
@@ -31,7 +31,6 @@ module.exports = {
     module: {
         rules: [{
             test: /\.js$/,
-            include: staticPath + '/script',
             use: [{
                 loader: 'babel-loader',
                 options: {
@@ -42,7 +41,6 @@ module.exports = {
             }]
         }, {
             test: /\.css$/,
-            include: staticPath + '/style',
             use: ExtractTextPlugin.extract({
                 fallback: 'style-loader',
                 use: [{
@@ -54,7 +52,6 @@ module.exports = {
             })
         }, {
             test: /\.scss/,
-            include: staticPath + '/style',
             use: ExtractTextPlugin.extract({
                 fallback: 'style-loader',
                 use: [{
@@ -68,7 +65,6 @@ module.exports = {
             })
         }, {
             test: /\.(jpe?g|png|gif|svg)$/i,
-            include: staticPath + '/file',
             use: [{
                 loader: 'url-loader',
                 options: {

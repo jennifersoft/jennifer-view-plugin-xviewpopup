@@ -15,16 +15,44 @@ public class XViewPopupController extends PluginController {
 
     @RequestMapping(value = { "/xviewpopup" }, method = RequestMethod.GET)
     @ResponseBody
-    public ModelAndView getXViewPopupMainPage(@RequestParam(required=false, defaultValue="-1") short domainId, @RequestParam(required=false, defaultValue="-1") long startTime,
-                                              @RequestParam(required=false, defaultValue="-1") long endTime, @RequestParam(required=false, defaultValue="") String txid) {
+    public ModelAndView getXViewPopupMainPage(@RequestParam(required=false, defaultValue="-1") short domainId,
+                                              @RequestParam(required=false, defaultValue="-1") long searchTime,
+                                              @RequestParam(required=false, defaultValue="-1") long txId,
+                                              @RequestParam(required=false, defaultValue="") String session) {
         ModelAndView mav = new ModelAndView("templates/index.vm");
         ModelMap model = mav.getModelMap();
 
-        model.put("sid", domainId);
-        model.put("stime", startTime);
-        model.put("etime", endTime);
-        model.put("txid", txid);
-        model.put("hostName", PropertyUtil.getValue("xviewpopup", "hostName", "http://127.0.0.1:7900"));
+        model.put("hostName", PropertyUtil.getValue("xviewpopup", "hostName", "https://dev.jennifersoft.com"));
+
+        if(!session.equals("")) {
+            model.put("xviewpopup_params", parseSessionKey(session));
+        } else if(domainId != -1 && searchTime != -1 && txId != -1) {
+            XViewPopupParameter params = new XViewPopupParameter();
+            params.setDomainId(domainId);
+            params.setSearchTime(searchTime / 1000);
+            params.setTxId(txId);
+            params.setNo(1);
+
+            model.put("xviewpopup_params", params);
+        } else {
+            model.put("xviewpopup_params", null);
+        }
+
         return mav;
+    }
+
+    public static XViewPopupParameter parseSessionKey(String session) {
+        String hexDomainId = session.substring(0, 8);
+        String hexSearchTime = session.substring(8, 16);
+        String hexTxId = session.substring(16, 32);
+        String hexNo = session.substring(32, 40);
+
+        XViewPopupParameter params = new XViewPopupParameter();
+        params.setDomainId(Short.parseShort(hexDomainId, 16));
+        params.setSearchTime(Long.parseLong(hexSearchTime, 16));
+        params.setTxId(Long.parseLong(hexTxId, 16));
+        params.setNo(Integer.parseInt(hexNo, 16));
+
+        return params;
     }
 }

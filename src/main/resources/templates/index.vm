@@ -1,11 +1,18 @@
 <div id="xviewpopup-main">
     <div class="message">Redirecting...</div>
+
+#if ( $xviewpopup_params )
+    #set( $startTime = ($xviewpopup_params.searchTime * 1000) - 60000 );
+    #set( $endTime = ($xviewpopup_params.searchTime * 1000) + 60000 );
+
     <form id="frm_plugin" method="post" target="_self">
-        <input type="hidden" name="txids" value="$txid" />
-        <input type="hidden" name="sid" value="$sid" />
-        <input type="hidden" name="stime" value="$stime" />
-        <input type="hidden" name="etime" value="$etime" />
+        <input type="hidden" name="txids" value="$xviewpopup_params.txId" />
+        <input type="hidden" name="sid" value="$xviewpopup_params.domainId" />
+        <input type="hidden" name="stime" value="$startTime" />
+        <input type="hidden" name="etime" value="$endTime" />
         <input type="hidden" name="isPopup" value="true" />
     </form>
+#end
+
     <input type="hidden" name="hostName" value="$hostName" />
 </div>
