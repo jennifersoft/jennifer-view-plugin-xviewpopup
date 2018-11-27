@@ -5,7 +5,7 @@
 
 	<groupId>com.aries</groupId>
 	<artifactId>xviewpopup</artifactId>
-	<version>0.1.0</version>
+	<version>0.1.1</version>
 	<packaging>jar</packaging>
 
 	<name>X-View Popup</name>
@@ -51,7 +51,7 @@
 		<dependency>
 			<groupId>com.aries</groupId>
 			<artifactId>extension</artifactId>
-			<version>1.0.12</version>
+			<version>1.2.1</version>
 		</dependency>
 	</dependencies>
 
