@@ -1,11 +1,14 @@
 require('./index.scss')
 
 import jq from 'jquery'
+import extension from 'aries-extension-js'
 
 jq(function() {
-    aries.extension.setup({
+    extension.setup({
         hostName: jq("input[name=hostName]").val()
     });
+
+    jq("body").height(jq(document).height());
 
     setTimeout(function() {
         var txids = jq("#frm_plugin").find("input[name=txids]").val();
@@ -16,7 +19,7 @@ jq(function() {
         if(!txids || !sid || !stime || !etime) {
             jq("#xviewpopup-main").find(".message").html("All parameters are required.");
         } else {
-            jq("#xviewpopup-main").find("#frm_plugin").attr("action", aries.extension.options.hostName + "/popup/xviewPointList").submit();
+            jq("#xviewpopup-main").find("#frm_plugin").attr("action", extension.options.hostName + "/popup/xviewPointList").submit();
         }
     }, 1000);
 });

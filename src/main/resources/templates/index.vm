@@ -2,8 +2,8 @@
     <div class="message">Redirecting...</div>
 
 #if ( $xviewpopup_params )
-    #set( $startTime = ($xviewpopup_params.searchTime * 1000) - 60000 );
-    #set( $endTime = ($xviewpopup_params.searchTime * 1000) + 60000 );
+    #set( $startTime = ($xviewpopup_params.searchTime * 1000) - 60000 )
+    #set( $endTime = ($xviewpopup_params.searchTime * 1000) + 60000 )
 
     <form id="frm_plugin" method="post" target="_self">
         <input type="hidden" name="txids" value="$xviewpopup_params.txId" />
