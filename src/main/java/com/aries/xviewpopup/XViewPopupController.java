@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.math.BigInteger;
+
 @Controller
 public class XViewPopupController extends PluginController {
 
@@ -51,7 +53,7 @@ public class XViewPopupController extends PluginController {
         XViewPopupParameter params = new XViewPopupParameter();
         params.setDomainId(Short.parseShort(hexDomainId, 16));
         params.setSearchTime(Long.parseLong(hexSearchTime, 16));
-        params.setTxId(Long.parseLong(hexTxId, 16));
+        params.setTxId(new BigInteger(hexTxId, 16).longValue());
         params.setNo(Integer.parseInt(hexNo, 16));
 
         return params;
