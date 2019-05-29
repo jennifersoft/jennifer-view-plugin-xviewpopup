@@ -29,10 +29,9 @@ In order to use the plug-in, you will need to generate a Share URL first.
 ## 3- Using the plug-in
 To use the plug-in, you will need to use the Share URL generated in the previous step and append the following paramters to it. 
 
-| Paramter | Description | Sample Value |
+| Parameter | Description | Sample Value |
 |:-------|-------|-------:|
 | txId | The transaction ID  | 9054121855462816943 |
-| domainId | The domain ID | 1000 |
 | searchTime | Search time for for the transaction | 1543282731313 |
 
 The full URL should look like the following 
