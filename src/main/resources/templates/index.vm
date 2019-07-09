@@ -7,7 +7,6 @@
 
     <form id="frm_plugin" method="post" target="_self">
         <input type="hidden" name="txids" value="$xviewpopup_params.txId" />
-        <input type="hidden" name="sid" value="-1" />
         <input type="hidden" name="stime" value="$startTime" />
         <input type="hidden" name="etime" value="$endTime" />
         <input type="hidden" name="isPopup" value="true" />
