@@ -19,40 +19,32 @@ public class XViewPopupController extends PluginController {
     @ResponseBody
     public ModelAndView getXViewPopupMainPage(@RequestParam(required=false, defaultValue="-1") long searchTime,
                                               @RequestParam(required=false, defaultValue="-1") long txId,
-                                              @RequestParam(required=false, defaultValue="0") int no) {
+                                              @RequestParam(required=false, defaultValue="0") int no,
+                                              @RequestParam(required=false, defaultValue="") String session) {
         ModelAndView mav = new ModelAndView("templates/index.vm");
         ModelMap model = mav.getModelMap();
 
         model.put("hostName", PropertyUtil.getValue("xviewpopup", "hostName", "https://dev.jennifersoft.com"));
 
-        if(searchTime != -1 && txId != -1) {
-            XViewPopupParameter params = new XViewPopupParameter();
-            params.setSearchTime(searchTime / 1000);
-            params.setTxId(txId);
-            params.setNo(no);
+        if(session.equals("")) {
+            if(searchTime != -1 && txId != -1) {
+                XViewPopupParameter params = new XViewPopupParameter();
+                params.setSearchTime(searchTime / 1000);
+                params.setTxId(txId);
+                params.setNo(no);
 
-            model.put("xviewpopup_params", params);
+                model.put("xviewpopup_params", params);
+            } else {
+                model.put("xviewpopup_params", null);
+            }
         } else {
-            model.put("xviewpopup_params", null);
-        }
+            XViewPopupParameter params = parseSessionKey(session);
 
-        return mav;
-    }
-
-    @RequestMapping(value = { "/xviewpopup/sherpaoracle" }, method = RequestMethod.GET)
-    @ResponseBody
-    public ModelAndView getXViewPopupMainPageForSherpaOracle(@RequestParam String session) {
-        ModelAndView mav = new ModelAndView("templates/index.vm");
-        ModelMap model = mav.getModelMap();
-
-        model.put("hostName", PropertyUtil.getValue("xviewpopup", "hostName", "https://dev.jennifersoft.com"));
-
-        XViewPopupParameter params = parseSessionKey(session);
-
-        if(params.getSearchTime() != -1 && params.getTxId() != -1) {
-            model.put("xviewpopup_params", params);
-        } else {
-            model.put("xviewpopup_params", null);
+            if(params.getSearchTime() != -1 && params.getTxId() != -1) {
+                model.put("xviewpopup_params", params);
+            } else {
+                model.put("xviewpopup_params", null);
+            }
         }
 
         return mav;
