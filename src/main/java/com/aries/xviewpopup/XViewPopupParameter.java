@@ -4,6 +4,8 @@ public class XViewPopupParameter {
     private long searchTime;
     private long txId;
     private int no;
+    private String guid;
+    private short domainId;
 
     public long getSearchTime() {
         return searchTime;
@@ -27,5 +29,21 @@ public class XViewPopupParameter {
 
     public void setNo(int no) {
         this.no = no;
+    }
+
+    public String getGuid() {
+        return guid;
+    }
+
+    public void setGuid(String guid) {
+        this.guid = guid;
+    }
+
+    public short getDomainId() {
+        return domainId;
+    }
+
+    public void setDomainId(short domainId) {
+        this.domainId = domainId;
     }
 }
