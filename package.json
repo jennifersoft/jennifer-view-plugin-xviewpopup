@@ -4,7 +4,7 @@
   "scripts": {
     "watch": "webpack --watch",
     "front": "npm run watch & webpack-dev-server",
-    "server": "java -jar ./dist/xviewpopup_jennifer-0.1.1.jar",
+    "server": "java -jar ./dist/xviewpopup_local-0.2.1.jar",
     "start": "npm run front"
   },
   "devDependencies": {
