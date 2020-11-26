@@ -22,7 +22,7 @@ public class XViewPopupController extends PluginController {
                                               @RequestParam(required=false, defaultValue="-1") long txId,
                                               @RequestParam(required=false, defaultValue="0") int no,
                                               @RequestParam(required=false, defaultValue="") String session,
-                                              @RequestParam(required=false, defaultValue="") String guid) {
+                                              @RequestParam(required=false, defaultValue="") String guId) {
         ModelAndView mav = new ModelAndView("templates/index.vm");
         ModelMap model = mav.getModelMap();
 
@@ -37,10 +37,10 @@ public class XViewPopupController extends PluginController {
                 params.setDomainId(domainId);
                 params.setGuid("");
                 model.put("xviewpopup_params", params);
-            } else if(searchTime != -1 && !guid.equals("")) {
+            } else if(searchTime != -1 && !guId.equals("")) {
                 XViewPopupParameter params = new XViewPopupParameter();
                 params.setSearchTime(searchTime / 1000);
-                params.setGuid(guid);
+                params.setGuid(guId);
                 model.put("xviewpopup_params", params);
             } else {
                 model.put("xviewpopup_params", null);
