@@ -1,4 +1,4 @@
-# X-View Pop-up 
+# X-View Pop-up (Test)
 This plugin allows you to run/open X-View pop-ups from external sources without authentication.
 
 # Usage
